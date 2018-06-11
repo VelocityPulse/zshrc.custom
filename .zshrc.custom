@@ -1,10 +1,9 @@
 alias fucking="sudo su"
 
-function commit {
-	git commit -m $1;
+function gpsc {
+	git status && git add -A && git status && commit $1 && git push
 }
 
-alias commit=commit $1
 alias gps="git status && git add -A && git status && git commit -m \"auto save\" && git push"
-alias gpsc="git status && git add -A && git status && commit $1 && git push"
+#alias gpsc="git status && git add -A && git status && commit $@ && git push"
 
