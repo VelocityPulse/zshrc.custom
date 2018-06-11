@@ -1,0 +1,5 @@
+alias fucking="sudo su"
+
+alias gps="git status && git add -A && git status && git commit -m \"auto save\" && git push"
+alias gpsc="git status && git add -A && git status && git commit -m $1 && git push"
+
