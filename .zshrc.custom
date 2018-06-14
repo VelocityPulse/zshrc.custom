@@ -1,5 +1,9 @@
 alias fucking="sudo su"
 
+function gign {
+	echo "*.o\n*.a\n/objs" >> .gitignore
+}
+
 function gpc {
 	git status && git add -A && git status && git commit -m $1 && git push
 }
