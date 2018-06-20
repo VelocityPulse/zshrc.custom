@@ -1,7 +1,7 @@
 alias fucking="sudo su"
 
 function gign {
-	echo "*.o\n*.a\n/objs" >> .gitignore
+	echo "*.o\n*.a\n/objs\na.out*" >> .gitignore
 }
 
 function gpc {
