@@ -1,10 +1,16 @@
 alias fucking="sudo su"
 
+# create a basic gitignore
 function gign {
 	echo "*.o\n*.a\n/objs\na.out*" >> .gitignore
 }
 
+# push with a commit name parameter
 function gpc {
+	if [ -e Makefile ]
+	then
+		make fclean
+	fi
 	git status && git add -A && git status && git commit -m $1 && git push
 }
 
