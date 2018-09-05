@@ -2,7 +2,7 @@ alias fucking="sudo su"
 
 # create a basic gitignore
 function gign {
-	echo "*.o\n*.a\n/objs\na.out*" >> .gitignore
+	cp ~/.gitignoreSave .gitignore
 }
 
 # push with a commit name parameter
