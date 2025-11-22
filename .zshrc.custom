@@ -1,3 +1,9 @@
+#!/bin/zsh
+
+fpath+=$HOME/.zsh/pure
+autoload -U promptinit; promptinit
+prompt pure
+
 alias fucking="sudo su"
 
 # create a basic gitignore
@@ -16,7 +22,15 @@ function gpc {
 
 alias gd="git diff"
 alias gl="git log"
+alias gl1="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --all"
+alias gl2="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'"
+
 alias gs="git status"
 alias gps="git status && git add -A && git status && git commit -m \"auto save\" && git push"
 #alias gpsc="git status && git add -A && git status && commit $@ && git push"
+
+export CLICOLOR=1
+export LSCOLORS=ExFxBxDxCxegedabagacad
+alias ls='ls -GFh'
+
 
