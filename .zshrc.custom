@@ -45,3 +45,8 @@ zstyle ':prompt:pure:prompt:error' color 'red'
 zstyle ':prompt:pure:user' color 'yellow'
 zstyle ':prompt:pure:host' color 'blue'
 zstyle ':prompt:pure:execution_time' color 'yellow'
+
+# --- AUTOCOMPLETION config
+# autoload -Uz compinit && compinit
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+zstyle ':completion:*' menu select
