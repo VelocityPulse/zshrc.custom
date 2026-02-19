@@ -33,8 +33,6 @@ export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
 alias ls='ls -GFh'
 
-
-
 # --- PURE config
 zstyle ':prompt:pure:path' color 'cyan'
 zstyle ':prompt:pure:git:branch' color 'magenta'
@@ -50,3 +48,15 @@ zstyle ':prompt:pure:execution_time' color 'yellow'
 # autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*' menu select
+
+# --- LEFT/RIGHT KEYBINDING
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
+
+# Variante xterm
+bindkey "^[Od" backward-word
+bindkey "^[Oc" forward-word
+
+# Variante tmux/screen
+bindkey "^[[D" backward-word
+bindkey "^[[C" forward-word
