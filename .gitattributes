@@ -1,0 +1,7 @@
+# Shell files MUST be LF — Windows Git Bash chokes on CRLF in sourced rc files.
+*.sh        text eol=lf
+.zshrc.custom text eol=lf
+rc.custom   text eol=lf
+inputrc     text eol=lf
+gitignore   text eol=lf
+.minttyrc   text eol=lf

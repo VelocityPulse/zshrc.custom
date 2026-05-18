@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+# bash-specific config. Portable aliases/functions live in ../common/common.sh.
+
+# Resolve our own directory. We're always sourced by absolute path from the
+# stub in $HOME (see install.sh), so BASH_SOURCE[0] is already absolute.
+_BC_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# --- portable bits (shared with zsh) ---
+if [ -f "$_BC_DIR/../common/common.sh" ]; then
+    . "$_BC_DIR/../common/common.sh"
+fi
+
+# --- history (mirror of zsh setup) ---
+HISTSIZE=10000
+HISTFILESIZE=10000
+HISTCONTROL=ignoredups:ignorespace
+shopt -s histappend
+
+# --- prompt: git branch via PROMPT_COMMAND, PS1 uses a plain variable ---
+# Why not $(_bc_git_branch) directly in PS1? On some bash builds (notably Git
+# Bash / MINGW) command substitution inside PS1 has surprised us with parse
+# errors. Pre-computing into a variable sidesteps the issue and is cheaper.
+_bc_update_prompt() {
+    local b
+    if b="$(git rev-parse --abbrev-ref HEAD 2>/dev/null)"; then
+        _BC_GIT=" $b"
+    else
+        _BC_GIT=""
+    fi
+}
+
+# Chain into PROMPT_COMMAND once: history flush + git branch refresh.
+case "$PROMPT_COMMAND" in
+    *_bc_update_prompt*) ;;
+    "")  PROMPT_COMMAND='history -a; _bc_update_prompt' ;;
+    *)   PROMPT_COMMAND="history -a; _bc_update_prompt; $PROMPT_COMMAND" ;;
+esac
+
+# cyan path, magenta branch, green arrow on new line
+PS1='\[\e[36m\]\w\[\e[35m\]${_BC_GIT}\[\e[0m\]\n\[\e[32m\]❯\[\e[0m\] '
+
+# Keybindings live in ../inputrc, wired via ~/.inputrc ($include).

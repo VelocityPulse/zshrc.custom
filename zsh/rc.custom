@@ -6,8 +6,8 @@ _ZC_SELF="${(%):-%N}"
 _ZC_DIR="${_ZC_SELF:A:h}"
 
 # --- portable bits (shared with bash) ---
-if [ -f "$_ZC_DIR/common.sh" ]; then
-    . "$_ZC_DIR/common.sh"
+if [ -f "$_ZC_DIR/../common/common.sh" ]; then
+    . "$_ZC_DIR/../common/common.sh"
 fi
 
 # --- history ---

@@ -1,0 +1,16 @@
+# Keybindings — mirror of zsh/rc.custom bindkey block.
+# Sourced from ~/.inputrc via: $include ~/.inputrc.custom
+
+# ctrl+arrow → word jump
+"\e[1;5C": forward-word
+"\e[1;5D": backward-word
+
+# ctrl+backspace → delete previous word
+# On most terminals ctrl+backspace sends ^H (\C-h) or ^? (\C-?). Bind both
+# so it works regardless. Plain backspace usually sends the other code and
+# stays mapped to backward-delete-char by readline's defaults.
+"\C-h": backward-kill-word
+"\C-?": backward-kill-word
+
+# ctrl+delete → delete next word
+"\e[3;5~": kill-word

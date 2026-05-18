@@ -13,6 +13,25 @@ if command -v eza >/dev/null 2>&1; then
     exit 0
 fi
 
+# --- Windows (MINGW/MSYS): delegate to scoop -----------------------------
+case "$(uname -s)" in
+    MINGW*|MSYS*)
+        if command -v scoop >/dev/null 2>&1; then
+            log_info "installing eza via scoop"
+            if scoop install eza; then
+                log_ok "eza installed via scoop"
+            else
+                log_error "scoop install eza failed"
+                exit 1
+            fi
+        else
+            log_warn "scoop not available — skipping eza"
+            log_info "install scoop then re-run, or:  scoop install eza"
+        fi
+        exit 0
+        ;;
+esac
+
 mkdir -p "$EZA_DIR"
 
 ARCH="$(uname -m)"
