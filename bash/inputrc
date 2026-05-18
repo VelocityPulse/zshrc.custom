@@ -1,6 +1,12 @@
 # Keybindings — mirror of zsh/rc.custom bindkey block.
 # Sourced from ~/.inputrc via: $include ~/.inputrc.custom
 
+# Bracketed paste: readline treats \e[200~…\e[201~ as a paste delimiter
+# rather than literal input. The default varies across readline builds —
+# pinning it on here avoids ghost chars appearing at the start of pastes
+# in Git Bash, which we observed even with recent bash 5.2.
+set enable-bracketed-paste on
+
 # ctrl+arrow → word jump
 "\e[1;5C": forward-word
 "\e[1;5D": backward-word
